@@ -2,8 +2,6 @@
 #include <assert.h>
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-// #include "game.h"
-// #include "core/debugMemory.h"
 
 #define UR_SCREEN_WIDTH 320
 #define UR_SCREEN_HEIGHT 200
