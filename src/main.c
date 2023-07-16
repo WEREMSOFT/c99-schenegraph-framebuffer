@@ -78,7 +78,7 @@ int main(void)
 		else
 			urDrawCircleFill((URPointI){100, 100}, 100, (URColor){0, 255, 0});
 
-		if(mouseButtons[SDL_BUTTON_LEFT])
+		if(urIsMouseButtonJustPressed(SDL_BUTTON_LEFT))
 			urDrawCircleFill((URPointI){150, 100}, 100, (URColor){255, 0, 0});
 		else
 			urDrawCircleFill((URPointI){150, 100}, 100, (URColor){0, 255, 0});
