@@ -85,7 +85,7 @@ typedef struct
 } URRectI;
 // INPUT
 // --- MOUSE
-static int mouseButtons[3] = {0};
+static int mouseButtons[5] = {0};
 #ifndef UR_GET_BUTTON_STATE
 int urGetButtonState(int mouseButton)
 {
@@ -998,6 +998,7 @@ bool urHitTestPointRect(URPointI point, URRectI rectangle)
 	return false;
 }
 
+// delta time in seconds. IE 60 fps are aprox 0.016
 void urPrintFPS(double deltaTime)
 {
 

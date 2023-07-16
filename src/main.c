@@ -78,6 +78,11 @@ int main(void)
 		else
 			urDrawCircleFill((URPointI){100, 100}, 100, (URColor){0, 255, 0});
 
+		if(mouseButtons[SDL_BUTTON_LEFT])
+			urDrawCircleFill((URPointI){150, 100}, 100, (URColor){255, 0, 0});
+		else
+			urDrawCircleFill((URPointI){150, 100}, 100, (URColor){0, 255, 0});
+
 		urPrintString((URPointI){100, 100}, "hello world!!", (URColor){255, 255, 0});
 
 		urPrintFPS((double)(delta / 1000.));
@@ -103,6 +108,12 @@ int main(void)
 					break;
 				case SDL_KEYUP:
 					keys[event.key.keysym.scancode] = false;
+					break;
+				case SDL_MOUSEBUTTONDOWN:
+					mouseButtons[event.button.button] = true;
+					break;
+				case SDL_MOUSEBUTTONUP:
+					mouseButtons[event.button.button] = false;
 					break;
 			}
 		}
