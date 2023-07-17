@@ -106,29 +106,11 @@ bool urIsMouseButtonJustPressed(int mouseButton)
 }
 // --- KEYBOARD
 bool keys[256];
-
-#ifndef UR_GET_KEY_STATE
-int urGetKeyState(int key)
-{
-	assert("urGetKeyState not implemented" && 0);
-}
-#define UR_GET_KEY_STATE urGetKeyState 
-#endif 
+bool keysJustPressed[256];
 
 #ifndef UR_KEY_PRESS
 #error UR_KEY_PRESS not defined, int glfw is GLFW_PRESS, in SDL SDL_KEYDOWN, asumes SDL2, define a value to compile
 #endif
-bool urIsKeyJustPressed(int key)
-{
-    int actualKeyState = UR_GET_KEY_STATE(key);
-
-    if (keys[key] == UR_KEY_PRESS && actualKeyState == UR_KEY_PRESS)
-        return false;
-
-    keys[key] = actualKeyState;
-
-    return actualKeyState == UR_KEY_PRESS;
-}
 
 // GRAPHICS
 void urClearScreen(URColor clearColor)

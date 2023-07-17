@@ -15,13 +15,6 @@ void putPixel(int x, int y, char r, char g, char b)
 }
 #define UR_PUT_PIXEL putPixel
 
-int getKeyState(int key)
-{
-	return 0;
-}
-
-#define UR_GET_KEY_STATE getKeyState
-
 #define UR_KEY_PRESS SDL_KEYDOWN
 
 int getButtonState(int mouseButton)
@@ -65,6 +58,7 @@ int main(void)
 
 	while(isRunning)
 	{
+
 		newTime = SDL_GetTicks();
 		delta = newTime - oldTime;
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
@@ -73,7 +67,7 @@ int main(void)
 		for (int i = 0; i < 800; ++i)
 			putPixel(i, i, 0, 255, 0);
 
-		if(urIsKeyJustPressed(SDL_SCANCODE_SPACE))
+		if(keysJustPressed[SDL_SCANCODE_SPACE])
 			urDrawCircleFill((URPointI){100, 100}, 100, (URColor){255, 0, 0});
 		else
 			urDrawCircleFill((URPointI){100, 100}, 100, (URColor){0, 255, 0});
@@ -88,6 +82,9 @@ int main(void)
 		urPrintFPS((double)(delta / 1000.));
 
 		SDL_RenderPresent(renderer);
+
+		memset(keysJustPressed, 0, sizeof(bool) * 256);
+		
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
@@ -103,7 +100,7 @@ int main(void)
 						isRunning = false;
 						break;
 					}
-					
+					keysJustPressed[event.key.keysym.scancode] = true; 
 					keys[event.key.keysym.scancode] = true;
 					break;
 				case SDL_KEYUP:
