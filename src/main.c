@@ -73,7 +73,7 @@ int main(void)
 		for (int i = 0; i < 800; ++i)
 			putPixel(i, i, 0, 255, 0);
 
-		if(keys[SDL_SCANCODE_SPACE])
+		if(urIsKeyJustPressed(SDL_SCANCODE_SPACE))
 			urDrawCircleFill((URPointI){100, 100}, 100, (URColor){255, 0, 0});
 		else
 			urDrawCircleFill((URPointI){100, 100}, 100, (URColor){0, 255, 0});
