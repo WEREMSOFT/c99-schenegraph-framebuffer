@@ -56,6 +56,8 @@ int main(void)
 	Uint32 newTime;
 	Uint32 delta;
 
+	URSprite s = urSpriteCreate("assets/running-man2.bmp");
+
 	while(isRunning)
 	{
 
@@ -64,9 +66,10 @@ int main(void)
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     	SDL_RenderClear(renderer);
 
+
 		for (int i = 0; i < 800; ++i)
 			putPixel(i, i, 0, 255, 0);
-
+		
 		if(keysJustPressed[SDL_SCANCODE_SPACE])
 			urDrawCircleFill((URPointI){100, 100}, 100, (URColor){255, 0, 0});
 		else
@@ -77,6 +80,9 @@ int main(void)
 		else
 			urDrawCircleFill((URPointI){150, 100}, 100, (URColor){0, 255, 0});
 
+		urSpriteDrawTransparentClipped(s);
+
+
 		urPrintString((URPointI){100, 100}, "hello world!!", (URColor){255, 255, 0});
 
 		urPrintFPS((double)(delta / 1000.));
@@ -85,6 +91,8 @@ int main(void)
 
 		memset(keysJustPressed, 0, sizeof(bool) * 256);
 		
+
+
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
